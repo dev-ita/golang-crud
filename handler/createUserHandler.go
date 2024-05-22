@@ -3,24 +3,32 @@ package handler
 import (
 	"crud/db"
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 )
 
-type usuario struct {
-	Id    uint32 `json:"id"`
-	Nome  string `json:"nome"`
-	Email string `json:"email"`
+type Usuario struct {
+	Id    uint32 `json:"id" example:"1"`
+	Nome  string `json:"nome" example:"italo"`
+	Email string `json:"email" example:"teste@email.com"`
 }
 
+// @Summary Cria um usuário
+// @Description Cria um usuário no banco de dados
+// @Tags users
+// @Accept  json
+// @Produce  json
+// @Param usuario body Usuario true "Cria um usuário"
+// @Success 200 {object} Usuario
+// @Router /usuarios [post]
 func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Add("Content-Type", "application/json")
 	bodyRequest, err := io.ReadAll(r.Body)
 	if err != nil {
 		w.Write([]byte("Falha ao ler o corpo da requisição"))
 		return
 	}
-	var usuario usuario
+	var usuario Usuario
 	err = json.Unmarshal(bodyRequest, &usuario)
 	if err != nil {
 		w.Write([]byte("Falha ao desserializar JSON"))
@@ -51,6 +59,12 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	usuario.Id = uint32(idInserted)
+
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(fmt.Sprintf("Usuário inserido com sucesso! Id: %d", idInserted)))
+	err = json.NewEncoder(w).Encode(usuario)
+	if err != nil {
+		w.Write([]byte("Erro ao criar usuário"))
+		return
+	}
 }

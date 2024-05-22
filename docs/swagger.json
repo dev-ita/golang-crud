@@ -1,12 +1,13 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server.",
-        "title": "Swagger Example API",
+        "description": "Isso é uma simples aplicação CRUD desenvolvida em GO",
+        "title": "Documentação para o Projeto Integrado II",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
-            "name": "API Support",
-            "email": "your@email.com"
+            "name": "Ítalo Oliveira",
+            "url": "https://github.com/dev-ita",
+            "email": "italo.ods@hotmail.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -14,7 +15,61 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:8080",
-    "basePath": "/api/v1",
-    "paths": {}
+    "host": "localhost",
+    "basePath": "/",
+    "paths": {
+        "/usuarios": {
+            "post": {
+                "description": "Cria um usuário no banco de dados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Cria um usuário",
+                "parameters": [
+                    {
+                        "description": "Create order",
+                        "name": "usuario",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.Usuario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.Usuario"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "handler.Usuario": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "teste@email.com"
+                },
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "nome": {
+                    "type": "string",
+                    "example": "italo"
+                }
+            }
+        }
+    }
 }
