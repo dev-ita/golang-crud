@@ -25,6 +25,30 @@ const docTemplate = `{
     "basePath": "{{.BasePath}}",
     "paths": {
         "/usuarios": {
+            "get": {
+                "description": "Retorna todos os detalhes dos usuários",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Retorna os usuários",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/entitie.Usuario"
+                            }
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "Cria um usuário no banco de dados",
                 "consumes": [
@@ -39,12 +63,12 @@ const docTemplate = `{
                 "summary": "Cria um usuário",
                 "parameters": [
                     {
-                        "description": "Create order",
+                        "description": "Cria um usuário",
                         "name": "usuario",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/handler.Usuario"
+                            "$ref": "#/definitions/entitie.Usuario"
                         }
                     }
                 ],
@@ -52,7 +76,39 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handler.Usuario"
+                            "$ref": "#/definitions/entitie.Usuario"
+                        }
+                    }
+                }
+            }
+        },
+        "/usuarios/{id}": {
+            "get": {
+                "description": "Retorna todos os detalhes do usuário através de um ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Retorna um único usuário por ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the user",
+                        "name": "userId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/entitie.Usuario"
                         }
                     }
                 }
@@ -60,7 +116,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "handler.Usuario": {
+        "entitie.Usuario": {
             "type": "object",
             "properties": {
                 "email": {
@@ -73,7 +129,7 @@ const docTemplate = `{
                 },
                 "nome": {
                     "type": "string",
-                    "example": "italo"
+                    "example": "teste"
                 }
             }
         }

@@ -1,6 +1,6 @@
 basePath: /
 definitions:
-  handler.Usuario:
+  entitie.Usuario:
     properties:
       email:
         example: teste@email.com
@@ -9,7 +9,7 @@ definitions:
         example: 1
         type: integer
       nome:
-        example: italo
+        example: teste
         type: string
     type: object
 host: localhost
@@ -27,25 +27,62 @@ info:
   version: "1.0"
 paths:
   /usuarios:
-    post:
+    get:
       consumes:
       - application/json
-      description: Cria um usuário no banco de dados
-      parameters:
-      - description: Create order
-        in: body
-        name: usuario
-        required: true
-        schema:
-          $ref: '#/definitions/handler.Usuario'
+      description: Retorna todos os detalhes dos usuários
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handler.Usuario'
+            items:
+              $ref: '#/definitions/entitie.Usuario'
+            type: array
+      summary: Retorna os usuários
+      tags:
+      - users
+    post:
+      consumes:
+      - application/json
+      description: Cria um usuário no banco de dados
+      parameters:
+      - description: Cria um usuário
+        in: body
+        name: usuario
+        required: true
+        schema:
+          $ref: '#/definitions/entitie.Usuario'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entitie.Usuario'
       summary: Cria um usuário
+      tags:
+      - users
+  /usuarios/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Retorna todos os detalhes do usuário através de um ID
+      parameters:
+      - description: ID of the user
+        in: path
+        name: userId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entitie.Usuario'
+      summary: Retorna um único usuário por ID
       tags:
       - users
 swagger: "2.0"

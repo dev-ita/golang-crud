@@ -2,24 +2,19 @@ package handler
 
 import (
 	"crud/db"
+	"crud/entitie"
 	"encoding/json"
 	"io"
 	"net/http"
 )
-
-type Usuario struct {
-	Id    uint32 `json:"id" example:"1"`
-	Nome  string `json:"nome" example:"italo"`
-	Email string `json:"email" example:"teste@email.com"`
-}
 
 // @Summary Cria um usuário
 // @Description Cria um usuário no banco de dados
 // @Tags users
 // @Accept  json
 // @Produce  json
-// @Param usuario body Usuario true "Cria um usuário"
-// @Success 200 {object} Usuario
+// @Param usuario body entitie.Usuario true "Cria um usuário"
+// @Success 200 {object} entitie.Usuario
 // @Router /usuarios [post]
 func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "application/json")
@@ -28,7 +23,7 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Falha ao ler o corpo da requisição"))
 		return
 	}
-	var usuario Usuario
+	var usuario entitie.Usuario
 	err = json.Unmarshal(bodyRequest, &usuario)
 	if err != nil {
 		w.Write([]byte("Falha ao desserializar JSON"))

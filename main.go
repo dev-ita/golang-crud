@@ -6,6 +6,7 @@ import (
 
 	_ "crud/docs"
 
+	"github.com/rs/cors"
 	httpSwagger "github.com/swaggo/http-swagger/v2"
 )
 
@@ -24,17 +25,31 @@ import (
 // @host localhost
 // @BasePath /
 func main() {
+
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://localhost/", "http://localhost:8000/"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type"},
+		ExposedHeaders:   []string{"Link"},
+		AllowCredentials: true,
+		MaxAge:           300, // Máximo de 5 minutos
+	})
+
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("POST /usuarios", handler.CreateUserHandler)
+	mux.HandleFunc("GET /usuarios", handler.GetUsersHandler)
+	mux.HandleFunc("GET /usuarios/{id}", handler.GetUserHandler)
 
 	mux.HandleFunc("GET /swagger/", httpSwagger.Handler(
 		httpSwagger.URL("http://localhost:8000/swagger/doc.json"), //The url pointing to API definition
 	))
 
+	handler := c.Handler(mux)
+	http.Handle("/", c.Handler(mux))
+
 	println("go server listening at :8000")
-	if err := http.ListenAndServe(":8000", mux); err != nil {
+	if err := http.ListenAndServe(":8000", handler); err != nil {
 		panic(err)
 	}
-
 }
