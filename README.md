@@ -1,4 +1,4 @@
-# Nome do Projeto
+# GO CRUD
 Simples CRUD de usuários em GO, para a disciplina Projeto integrado II
 
 ## Descrição
