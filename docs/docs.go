@@ -143,7 +143,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "Documentação para o Projeto Integrado II",
-	Description:      "Isso é uma simples aplicação CRUD desenvolvida em GO",
+	Description:      "simples aplicação CRUD desenvolvida em GO",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

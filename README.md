@@ -11,4 +11,4 @@ O projeto está todo documentado na ferramenta SWAGGER
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-projeto.git
+   git clone https://github.com/dev-ita/golang-crud.git

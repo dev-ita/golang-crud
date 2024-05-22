@@ -12,7 +12,7 @@ import (
 
 // @title Documentação para o Projeto Integrado II
 // @version 1.0
-// @description Isso é uma simples aplicação CRUD desenvolvida em GO
+// @description simples aplicação CRUD desenvolvida em GO
 // @termsOfService http://swagger.io/terms/
 
 // @contact.name Ítalo Oliveira

@@ -18,7 +18,7 @@ info:
     email: italo.ods@hotmail.com
     name: Ítalo Oliveira
     url: https://github.com/dev-ita
-  description: Isso é uma simples aplicação CRUD desenvolvida em GO
+  description: simples aplicação CRUD desenvolvida em GO
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html

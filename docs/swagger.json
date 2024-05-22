@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Isso é uma simples aplicação CRUD desenvolvida em GO",
+        "description": "simples aplicação CRUD desenvolvida em GO",
         "title": "Documentação para o Projeto Integrado II",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
