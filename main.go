@@ -40,6 +40,7 @@ func main() {
 	mux.HandleFunc("POST /usuarios", handler.CreateUserHandler)
 	mux.HandleFunc("GET /usuarios", handler.GetUsersHandler)
 	mux.HandleFunc("GET /usuarios/{id}", handler.GetUserHandler)
+	mux.HandleFunc("PUT /usuarios/{id}", handler.UpdateUserHandler)
 
 	mux.HandleFunc("GET /swagger/", httpSwagger.Handler(
 		httpSwagger.URL("http://localhost:8000/swagger/doc.json"), //The url pointing to API definition

@@ -85,4 +85,24 @@ paths:
       summary: Retorna um único usuário por ID
       tags:
       - users
+    put:
+      consumes:
+      - application/json
+      description: Atualiza um usuário através do Id correspondente
+      parameters:
+      - description: ID of the user to be updated
+        in: path
+        name: userId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entitie.Usuario'
+      summary: Atualiza um usuário
+      tags:
+      - users
 swagger: "2.0"

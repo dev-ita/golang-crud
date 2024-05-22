@@ -112,6 +112,36 @@ const docTemplate = `{
                         }
                     }
                 }
+            },
+            "put": {
+                "description": "Atualiza um usuário através do Id correspondente",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Atualiza um usuário",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the user to be updated",
+                        "name": "userId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/entitie.Usuario"
+                        }
+                    }
+                }
             }
         }
     },
