@@ -70,6 +70,7 @@ func GetUserHandler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Erro ao se conectar no banco de dados"))
 		return
 	}
+	defer db.Close()
 
 	row, err := db.Query("select * from usuarios where id = ?", userId)
 	if err != nil {

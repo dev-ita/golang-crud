@@ -65,6 +65,24 @@ paths:
       tags:
       - users
   /usuarios/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Deleta um usuário correspondente ao ID
+      parameters:
+      - description: ID of the user to be deleted
+        in: path
+        name: userId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      summary: Deleta um usuário
+      tags:
+      - users
     get:
       consumes:
       - application/json
